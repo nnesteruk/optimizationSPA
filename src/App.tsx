@@ -3,6 +3,8 @@ import './App.css';
 import { SearchInput } from './components/SearchInput';
 import { ItemList } from './components/ItemList';
 import { CounterButton } from './components/CounterButton';
+import { ThemeToggle } from './components/ThemeToggle';
+import { ThemeContext, themes } from './contexts/ThemeContext';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -33,6 +35,17 @@ function App() {
       <SearchInput search={search} change={getSearch} />
       <ItemList list={list} search={search} />
       <CounterButton count={count} getCount={getNewCount} />
+      <ThemeContext.Consumer>
+        {({ theme, setTheme }) => (
+          <ThemeToggle
+            value={theme === themes.dark}
+            onChange={() => {
+              if (theme === themes.light) setTheme(themes.dark);
+              if (theme === themes.dark) setTheme(themes.light);
+            }}
+          />
+        )}
+      </ThemeContext.Consumer>
     </>
   );
 }

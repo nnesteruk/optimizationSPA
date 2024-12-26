@@ -11,7 +11,9 @@ export const CounterButton = ({ count, getCount }) => {
   return (
     <div>
       <h1>{newCount}</h1>
-      <button onClick={handleClick}>Увеличить</button>
+      <button onClick={handleClick} className="count__button">
+        Увеличить
+      </button>
     </div>
   );
 };

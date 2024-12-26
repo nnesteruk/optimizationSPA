@@ -1,0 +1,36 @@
+@use './style.module';
+
+:root[data-theme='light'] {
+  --background-color: #fafafa;
+  --color: black;
+}
+
+:root[data-theme='dark'] {
+  --background-color: #2b3e51;
+  --color: rgba(255, 255, 255, 0.82);
+  --button-color: rgb(167, 164, 164);
+}
+
+body {
+  background: var(--background-color);
+  color: var(--color);
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+.count__button {
+  border-radius: 10px;
+  color: var(--color);
+  background-color: var(--button-color);
+  padding: 4px 15px;
+  &:hover {
+    background-color: var(--color);
+    color: var(--background-color);
+  }
+  &:focus {
+    border-color: black;
+  }
+}
