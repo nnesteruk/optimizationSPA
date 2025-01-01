@@ -1,5 +1,14 @@
 @use './style.module';
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
 :root[data-theme='light'] {
   --background-color: #fafafa;
   --color: black;
@@ -33,4 +42,8 @@ body {
   &:focus {
     border-color: black;
   }
+}
+
+p {
+  color: red;
 }

@@ -5,6 +5,7 @@ import { ItemList } from './components/ItemList';
 import { CounterButton } from './components/CounterButton';
 import { ThemeToggle } from './components/ThemeToggle';
 import { ThemeContext, themes } from './contexts/ThemeContext';
+import { Registration } from './components/registration/Registration';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -46,6 +47,7 @@ function App() {
           />
         )}
       </ThemeContext.Consumer>
+      <Registration />
     </>
   );
 }
