@@ -6,8 +6,10 @@ import { CounterButton } from './components/CounterButton';
 import { ThemeToggle } from './components/ThemeToggle';
 import { ThemeContext, themes } from './contexts/ThemeContext';
 import { Registration } from './components/registration/Registration';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 
 function App() {
+  const navigate = useNavigate();
   const [count, setCount] = useState(0);
   const [search, setSearch] = useState('');
   const [list, setList] = useState([
@@ -30,25 +32,40 @@ function App() {
   const getNewCount = useCallback((count) => {
     setCount(count);
   }, []);
+  const goBack = () => {
+    navigate('/');
+  };
 
   return (
-    <>
-      <SearchInput search={search} change={getSearch} />
-      <ItemList list={list} search={search} />
-      <CounterButton count={count} getCount={getNewCount} />
-      <ThemeContext.Consumer>
-        {({ theme, setTheme }) => (
-          <ThemeToggle
-            value={theme === themes.dark}
-            onChange={() => {
-              if (theme === themes.light) setTheme(themes.dark);
-              if (theme === themes.dark) setTheme(themes.light);
-            }}
-          />
-        )}
-      </ThemeContext.Consumer>
-      <Registration />
-    </>
+    <Routes>
+      <Route path="/" element={<Registration />} />
+      <Route
+        path="/main"
+        element={
+          <>
+            <SearchInput search={search} change={getSearch} />
+            <ItemList list={list} search={search} />
+            <CounterButton count={count} getCount={getNewCount} />
+            <ThemeContext.Consumer>
+              {({ theme, setTheme }) => (
+                <ThemeToggle
+                  value={theme === themes.dark}
+                  onChange={() => {
+                    if (theme === themes.light) setTheme(themes.dark);
+                    if (theme === themes.dark) setTheme(themes.light);
+                  }}
+                />
+              )}
+            </ThemeContext.Consumer>
+            <div>
+              <button className="back-button" onClick={goBack}>
+                Назад
+              </button>
+            </div>
+          </>
+        }
+      />
+    </Routes>
   );
 }
 
